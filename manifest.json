@@ -1,0 +1,17 @@
+{
+	"files": {
+		"config.json": "a5e5f96b105fb6340dbe1b727975c77db49e4469ad663bf7ce52313b9c420899",
+		"index.js": "a2d95d29b2cb2c13996840cb0c05ddb294a2d388629c0e627643e1d0845d6a5d",
+		"module.json": "9d4199f2b3afee91c70f1f346164447e79a216b2066cef5fc5a46eaf9bcf0a5f"
+	},
+    "defs": {
+        "S_LOGIN": 2,
+        "S_LOAD_CLIENT_USER_SETTING": 1,
+        "S_JOIN_PRIVATE_CHANNEL": 1,
+        "C_LEAVE_PRIVATE_CHANNEL": 1,
+        "C_REQUEST_PRIVATE_CHANNEL_INFO": 1,
+        "C_CHAT": 1,
+        "C_WHISPER": 1,
+        "S_PRIVATE_CHAT": 1
+    }
+}

@@ -1,11 +1,10 @@
 'use strict'
 
 const PRIVATE_CHANNEL_INDEX = 7,
-	PRIVATE_CHANNEL_ID = -2 >>> 0,
-	PRIVATE_CHANNEL_NAME = 'Proxy',
-	PUBLIC_ENABLE = true,
-	PUBLIC_MATCH = /^!([^!].*)$/,
-	LOGIN_MESSAGE = true
+	  PRIVATE_CHANNEL_ID = -2 >>> 0,
+	  PUBLIC_MATCH = /^!([^!].*)$/
+
+const { login_message: LOGIN_MESSAGE, public_enable: PUBLIC_ENABLE, private_channel_name: PRIVATE_CHANNEL_NAME } = require('./config.json')
 
 class Command {
 	constructor(dispatch) {
@@ -13,6 +12,7 @@ class Command {
 
 		this.loaded = false
 		this.hooks = {}
+		this.cmds = []
 
 		dispatch.hook('S_LOGIN', 2, () => { this.loaded = false })
 
@@ -108,6 +108,13 @@ class Command {
 				}
 			})
 		}
+		
+		//Adds own command for listing commands
+		this.add('help', () => {
+			this.message('Avaiable commands:')
+			for (let cmd of this.cmds)
+				this.message(' ' + cmd)
+		})
 	}
 
 	exec(str) {
@@ -139,6 +146,7 @@ class Command {
 		if(this.hooks[cmd = cmd.toLowerCase()]) throw new Error('Command already registered:', cmd)
 
 		this.hooks[cmd] = cb
+		this.cmds.push(cmd)
 	}
 
 	message(msg) {
